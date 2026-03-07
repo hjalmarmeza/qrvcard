@@ -1,0 +1,82 @@
+# ----------------------------------------
+# Informe panorámico
+# Cuenta: Default Account for Firebase
+# Propiedad: CV Hjalmar Web"
+# ----------------------------------------
+#  
+# Fecha de inicio: 20260204
+# Fecha de finalización: 20260303
+Usuarios activos,Usuarios nuevos,Tiempo de interacción medio por usuario activo,Número de eventos
+5,5,0.8,18
+
+#  
+# Fecha de inicio: 20260204
+# Fecha de finalización: 20260303
+Título de página y clase de pantalla,Vistas,Usuarios activos,Número de eventos,Porcentaje de rebote
+Hjalmar Meza Cortez | Executive Profile,5,5,18,0.6
+
+#  
+# Fecha de inicio: 20260204
+# Fecha de finalización: 20260303
+Primera fuente/medio del usuario,Usuarios activos
+(direct) / (none),3
+linkedin.com / referral,2
+
+#  
+# Fecha de inicio: 20260204
+# Fecha de finalización: 20260303
+Fuente/medio de la sesión,Sesiones
+(direct) / (none),3
+linkedin.com / referral,2
+
+#  
+# Fecha de inicio: 20260204
+# Fecha de finalización: 20260303
+Día N,new
+0000,0
+0001,0
+0002,0
+0003,0
+0004,0
+0005,0
+0006,0
+0007,0
+0008,0
+0009,0
+0010,0
+0011,0
+0012,0
+0013,0
+0014,0
+0015,0
+0016,0
+0017,0
+0018,0
+0019,0
+0020,0
+0021,0
+0022,3
+0023,1
+0024,1
+0025,0
+0026,0
+0027,0
+
+# Datos sobre la actividad en sus plataformas
+# Fecha de inicio: 20260204
+# Fecha de finalización: 20260303
+Plataforma,Eventos clave
+
+
+#  
+# Fecha de inicio: 20260204
+# Fecha de finalización: 20260303
+Ciudad,Usuarios activos
+Johannesburg,1
+Madrid,1
+
+#  
+# Fecha de inicio: 20260204
+# Fecha de finalización: 20260303
+Nombre de la audiencia,Usuarios activos
+All Users,5
