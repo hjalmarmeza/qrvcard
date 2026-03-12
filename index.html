@@ -30,15 +30,223 @@
       padding: 0;
     }
 
-    /* Efectos para la ventana de impresión (PDF) */
+    /* Estilos para la ventana de impresión (PDF) */
     @media print {
-      body {
-        background-color: #0a1120 !important;
-        -webkit-print-color-adjust: exact;
-        print-color-adjust: exact;
+      @page {
+        size: A4;
+        margin: 12mm 10mm;
       }
 
-      .no-print {
+      /* Reseteo Global y Legibilidad */
+      * {
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+        background-color: transparent !important;
+      }
+
+      body, html {
+        background: white !important;
+        color: #0f172a !important; /* Azul muy oscuro, casi negro */
+        font-size: 9pt;
+        line-height: 1.25;
+      }
+
+      .no-print { display: none !important; }
+      .print-only { display: block !important; }
+
+      /* Forzar fondos blancos y contraste máximo */
+      .max-w-6xl, #root, body, main, aside, section, div[class*="bg-slate"] {
+        background-color: white !important;
+        background: white !important;
+        border-color: #94a3b8 !important; /* Gris más oscuro para bordes */
+        color: #0f172a !important;
+        box-shadow: none !important;
+        margin: 0 !important;
+      }
+
+      /* CORRECCIÓN DE CONTRASTE PARA TEXTO RESALTADO */
+      strong, b, .font-semibold, .font-bold {
+        color: #000000 !important;
+        font-weight: 800 !important;
+      }
+
+      .text-slate-400, .text-slate-300, .text-slate-200 {
+        color: #1e293b !important;
+      }
+
+      /* Bloque de URLs para impresión */
+      .print-url-label { display: none !important; }
+      @media print {
+        .print-url-label { 
+          display: inline !important; 
+          font-size: 8pt !important;
+          color: #1e293b !important;
+          margin-left: 4px;
+        }
+      }
+
+      /* Header Ejecutivo (Página 1) */
+      header {
+        border-bottom: 3px solid #f59e0b !important;
+        padding-bottom: 15px !important;
+        margin-bottom: 20px !important;
+        display: flex !important;
+        flex-direction: row !important;
+        background: white !important;
+      }
+
+      header h1 { color: #000000 !important; font-size: 24pt !important; margin-bottom: 0 !important; }
+      header p { color: #1e293b !important; font-size: 11pt !important; line-height: 1.2 !important; font-weight: 500 !important; }
+
+      /* Dashboard de Estadísticas */
+      div[class*="bg-slate-950/40"] {
+        display: grid !important;
+        grid-template-columns: repeat(4, 1fr) !important;
+        gap: 8px !important;
+        border: 1px solid #94a3b8 !important;
+        padding: 10px 0 !important;
+        margin-bottom: 15px !important;
+        break-inside: avoid;
+      }
+
+      div[class*="bg-slate-900/60"] {
+        border: 1px solid #94a3b8 !important;
+        padding: 8px !important;
+        background: #f1f5f9 !important; /* Gris muy tenue para contraste de fondo */
+      }
+      
+      div[class*="bg-slate-900/60"] span { color: #334155 !important; font-weight: 800 !important; }
+      div[class*="bg-slate-900/60"] div { color: #000000 !important; font-weight: 900 !important; }
+      div[class*="bg-slate-900/60"] .text-slate-400 { color: #1e293b !important; font-weight: 600 !important; }
+
+      /* Layout de Columnas */
+      .flex-col.lg-flex-row {
+        display: flex !important;
+        flex-direction: row !important;
+        gap: 15px !important;
+      }
+
+      main {
+        flex: 2 !important;
+        border-right: 1px solid #e2e8f0 !important;
+        padding-right: 15px !important;
+      }
+
+      aside { flex: 1 !important; padding-left: 5px !important; }
+
+      /* Títulos de Sección */
+      h2 { 
+        font-size: 13pt !important; 
+        color: #0f172a !important;
+        font-weight: 800 !important;
+        border-bottom: 2px solid #f59e0b !important; 
+        display: block !important;
+        width: 100% !important;
+        padding-bottom: 4px !important; 
+        margin-bottom: 12px !important;
+        page-break-after: avoid;
+      }
+      
+      h2 i { color: #f59e0b !important; margin-right: 8px !important; }
+
+      /* Ajuste de Experiencia Laboral (Máximo Contraste) */
+      .experience-item {
+        break-inside: avoid !important;
+        margin-bottom: 12px !important;
+        padding-bottom: 0 !important;
+        border-left: 2px solid #cbd5e1 !important;
+        padding-left: 15px !important;
+      }
+      
+      .experience-item h3 { font-size: 11pt !important; color: #000000 !important; margin-bottom: 2px !important; font-weight: 800 !important; }
+      .experience-item span.period-badge { font-size: 8pt !important; color: #854d0e !important; background: transparent !important; border: none !important; padding: 0 !important; font-weight: 700 !important; }
+      .experience-item .company-info { color: #1e293b !important; font-size: 9pt !important; margin-bottom: 4px !important; font-weight: 700 !important; }
+      .experience-item li { margin-bottom: 3px !important; font-size: 8.5pt !important; line-height: 1.2 !important; color: #334155 !important; }
+      .experience-item i { color: #f59e0b !important; }
+
+      /* Regla de Oro e Info */
+      .print-no-break, .bg-gradient-to-br {
+        break-inside: avoid !important;
+        padding: 10px !important;
+        margin-bottom: 20px !important;
+        border: 1px solid #f59e0b !important;
+        background: #fffbeb !important;
+      }
+
+      /* Rediseño de Competencias (Página 2) */
+      div[class*="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3"] {
+        display: grid !important;
+        grid-template-columns: 1fr 1fr 1fr !important;
+        gap: 10px !important;
+      }
+
+      div[class*="bg-gradient-to-b from-slate-900/80"] {
+        background: white !important;
+        border: 1px solid #e2e8f0 !important;
+        border-top: 4px solid #f59e0b !important;
+        border-radius: 4px !important;
+        padding: 0 !important;
+        break-inside: avoid !important;
+      }
+
+      div[class*="bg-slate-900/50"] { background: #f8fafc !important; border-bottom: 1px solid #e2e8f0 !important; padding: 8px !important; }
+      div[class*="bg-slate-900/50"] h3 { font-size: 8pt !important; color: #000000 !important; font-weight: 900 !important; }
+      div[class*="bg-slate-900/50"] i { font-size: 14pt !important; color: #f59e0b !important; }
+
+      div[class*="skills-tags"], div[class*="p-6 w-full flex flex-wrap"] { padding: 8px !important; gap: 4px !important; }
+      span[class*="px-2.5 py-1"] { 
+        background: #f8fafc !important; 
+        color: #1e293b !important; 
+        font-size: 7.5pt !important; 
+        border: 1px solid #94a3b8 !important;
+        padding: 1px 5px !important;
+        font-weight: 600 !important;
+      }
+
+      /* Portafolio (Contraste Portafolio) */
+      #innovacion-section { page-break-before: always; padding-top: 15px !important; }
+      #innovacion-section h1 { color: #000000 !important; }
+      #innovacion-section p { color: #1e293b !important; font-weight: 500 !important; }
+      #innovacion-section .group { 
+        padding: 10px !important; 
+        border: 1px solid #94a3b8 !important; 
+        background: white !important;
+        break-inside: avoid !important;
+      }
+      #innovacion-section h3 { color: #000000 !important; font-size: 9pt !important; margin-bottom: 3px !important; font-weight: 900 !important; }
+      #innovacion-section p.text-slate-400 { color: #334155 !important; font-size: 7.5pt !important; line-height: 1.15 !important; font-weight: 500 !important; }
+      #innovacion-section .border-t { border-color: #cbd5e1 !important; padding-top: 5px !important; margin-top: 5px !important; }
+      #innovacion-section .flex-wrap span { font-size: 7pt !important; color: #854d0e !important; background: #fff7ed !important; border: 1px solid #fed7aa !important; font-weight: 700 !important; }
+
+      /* FORZAR SALTO DE PÁGINA antes de secciones estratégicas */
+      .page-break-experience { page-break-before: always !important; break-before: page !important; }
+      .page-break-skills { 
+        page-break-before: always !important; 
+        break-before: page !important;
+        padding-top: 15mm !important;
+        padding-bottom: 25mm !important;
+      }
+      .page-break-portfolio-end { 
+        page-break-before: always !important; 
+        break-before: page !important;
+        display: block !important;
+        width: 100% !important;
+        height: 1pt !important;
+        margin: 0 !important;
+        padding: 0 !important;
+      }
+
+      /* Corregir solapamientos y truncado */
+      h2, h3, span { letter-spacing: normal !important; }
+      .truncate { overflow: visible !important; text-overflow: clip !important; white-space: normal !important; }
+
+      /* Footer */
+      .print-footer { position: fixed; bottom: 0; width: 100%; font-size: 7pt; color: #64748b; text-align: center; }
+    }
+
+    /* Clases de control para pantalla */
+    @media screen {
+      .print-only {
         display: none !important;
       }
     }
@@ -67,7 +275,7 @@
       <div className="bg-slate-900/60 border border-amber-500/20 p-3 md:p-4 rounded-xl backdrop-blur-md hover:border-amber-500/50 transition-all duration-300 overflow-hidden flex flex-col justify-between">
         <div className="flex flex-col sm:flex-row sm:items-center gap-1.5 md:gap-3 mb-2 w-full">
           <i className={`${iconClass} text-amber-500 text-xs md:text-sm shrink-0`}></i>
-          <span className="text-[8.5px] md:text-[10px] font-black uppercase tracking-wider md:tracking-widest text-slate-500 truncate w-full" title={label}>{label}</span>
+          <span className="text-[8.5px] md:text-[10px] font-black uppercase tracking-wider md:tracking-widest text-slate-500 truncate print:overflow-visible print:whitespace-normal w-full" title={label}>{label}</span>
         </div>
         <div className="text-xl md:text-2xl font-bold text-white mb-1">{value}</div>
         <div className="text-[8px] md:text-[9px] leading-tight text-slate-400 uppercase tracking-widest">{subtext}</div>
@@ -76,14 +284,14 @@
 
 
     const ExperienceItem = ({ title, period, company, location, items, isLast }) => (
-      <div className={`relative pl-8 ${isLast ? '' : 'border-l border-slate-800 pb-10'}`}>
-        <div className="absolute left-[-5px] top-0 w-2.5 h-2.5 rounded-full bg-amber-500 shadow-[0_0_10px_rgba(245,158,11,0.6)]"></div>
+      <div className={`relative pl-8 experience-item ${isLast ? '' : 'border-l border-slate-800 pb-10'}`}>
+        <div className="absolute left-[-5px] top-0 w-2.5 h-2.5 rounded-full bg-amber-500 shadow-[0_0_10px_rgba(245,158,11,0.6)] no-print"></div>
         <div className="flex flex-col md:flex-row md:justify-between md:items-start mb-2 gap-1">
           <h3 className="text-lg font-bold text-white uppercase tracking-tight leading-tight">{title}</h3>
-          <span className="text-xs font-mono text-amber-500/70 bg-amber-500/5 px-2 py-1 rounded border border-amber-500/10 whitespace-nowrap">{period}</span>
+          <span className="text-xs font-mono text-amber-500/70 bg-amber-500/5 px-2 py-1 rounded border border-amber-500/10 whitespace-nowrap period-badge">{period}</span>
         </div>
-        <div className="text-slate-400 text-sm font-semibold mb-4">{company} | {location}</div>
-        <ul className="space-y-3">
+        <div className="text-slate-400 text-sm font-semibold mb-4 company-info">{company} | {location}</div>
+        <ul className="space-y-3 experience-list">
           {items.map((item, idx) => (
             <li key={idx} className="flex gap-3 text-sm text-slate-400 leading-relaxed">
               <i className="fas fa-chevron-right text-amber-500 text-[10px] shrink-0 mt-1.5"></i>
@@ -168,9 +376,14 @@
                 <div className="flex flex-col md:flex-row items-center md:items-start gap-6">
                   <div className="flex flex-wrap justify-center md:justify-start gap-3">
                     <a href="https://www.linkedin.com/in/hjalmar-meza" target="_blank" rel="noreferrer" className="flex items-center gap-2 bg-slate-900/80 hover:bg-slate-800 px-4 py-2 rounded-xl border border-slate-700 transition-all text-sm font-bold">
-                      <i className="fab fa-linkedin text-amber-500"></i> Perfil LinkedIn
+                      <i className="fab fa-linkedin text-amber-500"></i> 
+                      <span className="no-print">Perfil LinkedIn</span>
+                      <span className="hidden print:inline">linkedin.com/in/hjalmar-meza</span>
                     </a>
-                    <div className="flex items-center gap-2 px-4 py-2 rounded-xl border border-slate-800 bg-slate-900/40 text-sm">
+                    <div className="hidden print:flex items-center gap-2 px-4 py-2 rounded-xl border border-slate-200 bg-slate-50 text-sm font-bold text-slate-900">
+                      <i className="fas fa-globe text-amber-600"></i> hjalmarmeza.github.io/cv
+                    </div>
+                    <div className="flex items-center gap-2 px-4 py-2 rounded-xl border border-slate-800 bg-slate-900/40 text-sm print:border-slate-200 print:bg-white">
                       <i className="fas fa-envelope text-amber-500"></i> hjalmar.meza@gmail.com
                     </div>
                     <div className="flex items-center gap-2 px-4 py-2 rounded-xl border border-slate-800 bg-slate-900/40 text-sm font-mono">
@@ -197,7 +410,9 @@
 
               {/* Bloque Visual Derecho: Foto + QR */}
               <div className="flex flex-row md:flex-col items-center gap-4 md:gap-6 shrink-0 bg-slate-900/30 p-4 rounded-3xl border border-slate-800/50">
-                <div className="relative group">
+                
+                {/* FOTO WEB */}
+                <div className="relative group no-print">
                   <div className="absolute -inset-1 bg-gradient-to-tr from-amber-500 to-blue-600 rounded-2xl blur opacity-20 group-hover:opacity-40 transition duration-700"></div>
                   <div className="relative w-32 h-32 md:w-52 md:h-52 rounded-xl border border-amber-500/30 overflow-hidden bg-slate-900">
                     <img
@@ -209,8 +424,15 @@
                   </div>
                 </div>
 
+                {/* FOTO PRINT */}
+                <div className="hidden print:block mb-4">
+                   <div className="w-24 h-24 rounded-full border-4 border-amber-500 overflow-hidden bg-slate-800">
+                      <img src={miFotoURL} alt="Hjalmar Meza Cortez" className="w-full h-full object-cover" />
+                   </div>
+                </div>
 
-                <a href={infografiaURL} target="_blank" rel="noreferrer" className="flex flex-col items-center gap-2 bg-slate-950/80 p-2 md:p-3 rounded-2xl border border-amber-500/30 shadow-lg group hover:border-amber-500 transition-all cursor-pointer hover:-translate-y-1">
+                {/* QR WEB */}
+                <a href={infografiaURL} target="_blank" rel="noreferrer" className="flex flex-col items-center gap-2 bg-slate-950/80 p-2 md:p-3 rounded-2xl border border-amber-500/30 shadow-lg group hover:border-amber-500 transition-all cursor-pointer hover:-translate-y-1 no-print">
                   <div className="bg-white p-1 rounded-lg">
                     <img src={qrCodeImg} alt="QR Code Dashboard" className="w-14 h-14 md:w-20 md:h-20" />
                   </div>
@@ -226,15 +448,15 @@
 
 
             {/* DASHBOARD STATS */}
-            <div className={`gap-4 p-6 md:p-12 bg-slate-950/40 grid-cols-2 md:grid-cols-4 ${activeTab === 'perfil' ? 'grid' : 'hidden md:grid'}`}>
+            <div className={`gap-4 p-6 md:p-12 bg-slate-950/40 grid-cols-2 md:grid-cols-4 print:bg-white print:border-b-2 print:border-slate-100 ${activeTab === 'perfil' ? 'grid' : 'hidden md:grid'}`}>
               {stats.map((stat, idx) => <StatCard key={idx} {...stat} />)}
             </div>
 
 
-            <div className="flex flex-col lg:flex-row">
+            <div className="flex flex-col lg:flex-row print:flex-row">
 
               {/* COLUMNA IZQUIERDA */}
-              <main className={`flex-[1.2] p-6 md:p-12 md:border-r border-slate-800/50 ${activeTab === 'perfil' ? 'block' : 'hidden md:block'}`}>
+              <main className={`flex-[1.2] p-6 md:p-12 md:border-r border-slate-800/50 print:block ${activeTab === 'perfil' ? 'block' : 'hidden md:block'}`}>
 
                 {/* SECCIÓN: ACERCA DE MÍ + REGLA DE ORO */}
                 <section className="mb-14">
@@ -245,27 +467,28 @@
                     </h2>
                   </div>
 
-                  <p className="text-sm md:text-base text-slate-400 leading-relaxed mb-14 text-justify">
-                    Líder de Operaciones con 18 años de trayectoria en el sector Telecomunicaciones, especializado en la transformación digital de canales de atención masiva y la optimización de la Experiencia del Cliente (CX). Experto en orquestar equipos de alto rendimiento y liderar la transición de entornos físicos a digitales, logrando eficiencias operativas demostradas. Actualmente, fusiono mi sólido background corporativo con la implementación estratégica de <strong className="text-slate-200 font-semibold">Inteligencia Artificial Generativa y automatización de procesos</strong> para escalar la rentabilidad empresarial de manera ágil y estructurada.
+                  <p className="text-sm md:text-base text-slate-400 leading-relaxed mb-14 text-justify print:text-slate-800">
+                    Líder de Operaciones con 18 años de trayectoria en el sector Telecomunicaciones, especializado en la transformación digital de canales de atención masiva y la optimización de la Experiencia del Cliente (CX). Experto en orquestar equipos de alto rendimiento y liderar la transición de entornos físicos a digitales, logrando eficiencias operativas demostradas. Actualmente, fusiono mi sólido background corporativo con la implementación estratégica de <strong className="text-slate-200 font-semibold print:text-black">Inteligencia Artificial Generativa y automatización de procesos</strong> para escalar la rentabilidad empresarial de manera ágil y estructurada.
                   </p>
 
 
-                  <div className="relative p-6 md:p-8 rounded-2xl bg-gradient-to-br from-amber-500/10 via-slate-900/50 to-transparent border border-amber-500/30 shadow-[0_0_20px_rgba(245,158,11,0.05)] group hover:shadow-[0_0_40px_rgba(245,158,11,0.15)] transition-all duration-500">
-                    <div className="absolute top-[-10px] left-6 px-4 py-1 bg-[#0a1120] border border-amber-500/50 rounded-lg text-amber-500 text-[10px] font-black uppercase tracking-widest">
+                  <div className="relative p-6 md:p-8 rounded-2xl bg-gradient-to-br from-amber-500/10 via-slate-900/50 to-transparent border border-amber-500/30 shadow-[0_0_20px_rgba(245,158,11,0.05)] group hover:shadow-[0_0_40px_rgba(245,158,11,0.15)] transition-all duration-500 print-no-break">
+                    <div className="absolute top-[-10px] left-6 px-4 py-1 bg-[#0a1120] border border-amber-500/50 rounded-lg text-amber-500 text-[10px] font-black uppercase tracking-widest no-print">
                       Mi Regla de Oro
                     </div>
-                    <p className="text-lg md:text-xl font-bold text-slate-300 italic leading-snug">
+                    <div className="hidden print:block text-[10px] font-black text-amber-600 uppercase tracking-widest mb-2">MI REGLA DE ORO</div>
+                    <p className="text-lg md:text-xl font-bold text-slate-300 italic leading-snug print:text-slate-800 print:text-base">
                       "<span className="text-amber-500 font-black">Lo que funciona, NO se toca</span>; pero lo que puede optimizarse, lo transformo mediante flujos de trabajo autónomos y soluciones de IA que generan valor inmediato."
                     </p>
                   </div>
                 </section>
 
 
-                {/* SECCIÓN: EXPERIENCIA */}
-                <section>
+                {/* SECCIÓN: EXPERIENCIA (FORZAR HOJA 2) */}
+                <section className="page-break-experience">
                   <div className="flex items-center gap-4 mb-10">
                     <div className="h-[2px] w-8 bg-amber-500"></div>
-                    <h2 className="text-2xl font-black text-white uppercase tracking-tighter flex items-center gap-3">
+                    <h2 className="text-xl md:text-2xl font-black text-white uppercase tracking-tighter flex items-center gap-3 print:text-lg">
                       <i className="fas fa-briefcase text-amber-500"></i> Experiencia & Legado
                     </h2>
                   </div>
@@ -328,8 +551,8 @@
                   </div>
                 </section>
 
-                {/* FORMACIÓN ACADÉMICA E IDIOMAS (MOVIDOS A LA IZQUIERDA PARA BALANCEAR) */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mt-16 pt-12 border-t border-slate-800/50">
+                {/* FORMACIÓN ACADÉMICA E IDIOMAS (Visible en Web, Oculto en PDF) */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mt-16 pt-12 border-t border-slate-800/50 no-print">
                   {/* EDUCACIÓN COMPLETA */}
                   <section>
                     <h3 className="text-xs font-black text-white uppercase tracking-[0.3em] mb-6 flex items-center gap-2">
@@ -351,49 +574,150 @@
                     </div>
                   </section>
 
-                  {/* IDIOMAS */}
+                  {/* IDIOMAS (WEB) */}
                   <section>
                     <h3 className="text-xs font-black text-white uppercase tracking-[0.3em] mb-6 flex items-center gap-2">
-                      <i className="fas fa-globe text-amber-500"></i> Idiomas
+                      <i className="fas fa-language text-amber-500"></i> Idiomas
                     </h3>
                     <div className="space-y-4">
-                      <div className="flex justify-between items-end border-b border-slate-800/50 pb-3">
-                        <span className="text-white text-xs md:text-sm font-bold uppercase tracking-tight">Español</span>
-                        <span className="text-amber-500/80 text-[10px] md:text-[11px] font-black tracking-widest uppercase">Nativo</span>
+                      <div className="relative pl-5 border-l-2 border-amber-500/30">
+                        <div className="text-white text-xs md:text-sm font-bold uppercase tracking-tight">Español</div>
+                        <div className="text-amber-500/80 text-[10px] md:text-[11px] font-bold mt-1.5 uppercase">Nativo</div>
                       </div>
-                      <div className="flex justify-between items-end border-b border-slate-800/50 pb-3">
-                        <span className="text-white text-xs md:text-sm font-bold uppercase tracking-tight">Inglés</span>
-                        <span className="text-slate-500 text-[10px] md:text-[11px] font-black tracking-widest uppercase">Básico / Técnico (A2)</span>
+                      <div className="relative pl-5 border-l-2 border-slate-800">
+                        <div className="text-white text-xs md:text-sm font-bold uppercase tracking-tight">Inglés</div>
+                        <div className="text-slate-500 text-[10px] md:text-[11px] mt-1.5 font-medium uppercase">Básico (A2)</div>
                       </div>
                     </div>
                   </section>
                 </div>
-
               </main>
 
 
               {/* COLUMNA DERECHA */}
-              <aside className={`flex-1 bg-slate-950/20 p-6 md:p-12 space-y-16 overflow-hidden ${activeTab === 'skills' ? 'block' : 'hidden md:block'}`}>
+              <aside className={`flex-1 bg-slate-950/20 p-6 md:p-12 space-y-16 overflow-hidden print:block ${activeTab === 'skills' ? 'block' : 'hidden md:block'}`}>
 
-                {/* CERTIFICACIONES - LÍNEA DE TIEMPO NEÓN */}
-                <section>
+                {/* LOGROS CLAVE - SOLO PDF (POSICIÓN SUPERIOR ESTRATÉGICA) */}
+                <section className="print-only print-sidebar-block">
+                  <h3 className="print-sidebar-title">
+                    <i className="fas fa-trophy"></i> Logros Corporativos
+                  </h3>
+                  <div className="space-y-4">
+                    <div className="flex flex-col gap-1">
+                      <span className="text-[10px] font-black text-slate-800 uppercase leading-tight">Migración Masiva 30M</span>
+                      <span className="text-[9px] text-slate-600 leading-tight">Estabilización de sistemas críticos en el hito más grande de Telefónica Perú.</span>
+                    </div>
+                    <div className="flex flex-col gap-1">
+                      <span className="text-[10px] font-black text-slate-800 uppercase leading-tight">Eficiencia de Reducción (15%)</span>
+                      <span className="text-[9px] text-slate-600 leading-tight">Virtualización exitosa de la atención física a canales digitales.</span>
+                    </div>
+                    <div className="flex flex-col gap-1">
+                      <span className="text-[10px] font-black text-slate-800 uppercase leading-tight">Gestión Senior Multi-Sede</span>
+                      <span className="text-[9px] text-slate-600 leading-tight">Dirección de 52 centros de atención a nivel nacional.</span>
+                    </div>
+                    <div className="flex flex-col gap-1">
+                      <span className="text-[10px] font-black text-slate-800 uppercase leading-tight">Ahorro OpEx (110k €)</span>
+                      <span className="text-[9px] text-slate-600 leading-tight">Optimización mediante remodelación estratégica de infraestructura.</span>
+                    </div>
+                  </div>
+                </section>
+
+                {/* IDIOMAS VISUAL - SOLO PDF (POSICIÓN SUPERIOR) */}
+                <section className="print-only print-sidebar-block">
+                  <h3 className="print-sidebar-title">
+                    <i className="fas fa-language"></i> Idiomas
+                  </h3>
+                  <div className="space-y-4">
+                    <div className="flex flex-col gap-1.5">
+                      <div className="flex justify-between items-center px-1">
+                        <span className="text-[10px] font-black text-slate-800 uppercase">Español</span>
+                        <span className="text-[9px] text-amber-600 font-bold uppercase">Nativo</span>
+                      </div>
+                      <div className="lang-bar-bg"><div className="lang-bar-fill" style={{ width: '100%' }}></div></div>
+                    </div>
+                    <div className="flex flex-col gap-1.5">
+                      <div className="flex justify-between items-center px-1">
+                        <span className="text-[10px] font-black text-slate-800 uppercase">Inglés</span>
+                        <span className="text-[9px] text-slate-500 font-bold uppercase">Básico (A2)</span>
+                      </div>
+                      <div className="lang-bar-bg"><div className="lang-bar-fill" style={{ width: '35%' }}></div></div>
+                    </div>
+                  </div>
+                </section>
+
+                {/* EDUCACIÓN - SOLO PDF */}
+                <section className="print-only print-sidebar-block">
+                  <h3 className="print-sidebar-title">
+                    <i className="fas fa-graduation-cap"></i> Formación
+                  </h3>
+                  <div className="space-y-4">
+                    <div className="flex flex-col border-l-2 border-amber-500/20 pl-3">
+                      <span className="text-[10px] font-black text-slate-800 uppercase leading-tight">Grado en Administración</span>
+                      <span className="text-[9px] text-slate-500">Univ. César Vallejo | 2011-2014</span>
+                    </div>
+                    <div className="flex flex-col border-l-2 border-slate-200 pl-3">
+                      <span className="text-[10px] font-black text-slate-800 uppercase leading-tight">Coaching Directivo</span>
+                      <span className="text-[9px] text-slate-500">CENTRUM PUCP</span>
+                    </div>
+                    <div className="flex flex-col border-l-2 border-slate-200 pl-3">
+                      <span className="text-[10px] font-black text-slate-800 uppercase leading-tight">Gestión del Logro</span>
+                      <span className="text-[9px] text-slate-500">CENTRUM PUCP</span>
+                    </div>
+                  </div>
+                </section>
+
+                {/* SECCIÓN ORIGINAL: CERTIFICACIONES EN PDF (DIFERENTE FORMATO) */}
+                <section className="print-only print-sidebar-block">
+                   <h3 className="print-sidebar-title">
+                    <i className="fas fa-shield-alt"></i> Top Certificaciones
+                   </h3>
+                   <div className="print-cert-grid">
+                      <div className="print-cert-item">
+                        <h4>IA Generativa</h4>
+                        <p>Microsoft / LinkedIn</p>
+                      </div>
+                      <div className="print-cert-item">
+                        <h4>Productividad IA</h4>
+                        <p>Microsoft / LinkedIn</p>
+                      </div>
+                      <div className="print-cert-item">
+                        <h4>Azure AI Studio</h4>
+                        <p>Microsoft</p>
+                      </div>
+                      <div className="print-cert-item">
+                        <h4>CX Strategy</h4>
+                        <p>LinkedIn</p>
+                      </div>
+                      <div className="print-cert-item">
+                        <h4>Experto RGPD</h4>
+                        <p>LinkedIn (UE)</p>
+                      </div>
+                      <div className="print-cert-item">
+                        <h4>Agile & Design Thinking</h4>
+                        <p>LinkedIn</p>
+                      </div>
+                   </div>
+                </section>
+
+                {/* SECCIÓN ORIGINAL: CERTIFICACIONES (Visible en Web, Oculto en PDF) */}
+                <section className="no-print">
                   <h3 className="text-xs font-black text-white uppercase tracking-[0.3em] mb-10 flex items-center gap-2">
                     <i className="fas fa-shield-alt text-amber-500"></i> Evolución de Certificaciones
                   </h3>
 
-                  <div className="relative">
+                  <div className="relative cert-grid">
                     {/* Línea central */}
-                    <div className="absolute left-[20px] top-6 bottom-6 w-[2px] bg-gradient-to-b from-amber-500/80 via-amber-500/20 to-transparent"></div>
+                    <div className="absolute left-[20px] top-6 bottom-6 w-[2px] bg-gradient-to-b from-amber-500/80 via-amber-500/20 to-transparent cert-line-p"></div>
 
                     {certCategories.map((cat, idx) => (
-                      <div key={idx} className="relative flex flex-col pl-16 mb-8 group">
+                      <div key={idx} className="relative flex flex-col pl-16 mb-8 group cert-container-p">
                         {/* Nodo Central */}
-                        <div className="absolute left-0 top-3 w-11 h-11 rounded-full bg-slate-950 border-2 border-slate-800 group-hover:border-amber-500 flex items-center justify-center text-slate-500 group-hover:text-amber-500 z-10 shadow-[0_0_10px_rgba(245,158,11,0)] group-hover:shadow-[0_0_15px_rgba(245,158,11,0.3)] transition-all duration-500">
+                        <div className="absolute left-0 top-3 w-11 h-11 rounded-full bg-slate-950 border-2 border-slate-800 group-hover:border-amber-500 flex items-center justify-center text-slate-500 group-hover:text-amber-500 z-10 shadow-[0_0_10px_rgba(245,158,11,0)] group-hover:shadow-[0_0_15px_rgba(245,158,11,0.3)] transition-all duration-500 cert-icon-p">
                           <i className={`${cat.iconClass} text-base`}></i>
                         </div>
 
                         {/* Contenido */}
-                        <div className="bg-slate-900/40 p-5 rounded-2xl border border-slate-800 group-hover:border-amber-500/30 transition-all duration-500">
+                        <div className="bg-slate-900/40 p-5 rounded-2xl border border-slate-800 group-hover:border-amber-500/30 transition-all duration-500 cert-item-p">
                           <h3 className="text-amber-500 font-black uppercase text-[11px] md:text-xs tracking-widest mb-4">{cat.category}</h3>
                           <div className="flex flex-wrap gap-2">
                             {cat.items.map((item, i) => (
@@ -415,14 +739,14 @@
                 </section>
 
 
-                {/* HERRAMIENTAS E INTELIGENCIA ARTIFICIAL */}
-                <section>
-                  <h3 className="text-xs font-black text-white uppercase tracking-[0.3em] mb-6 flex items-center gap-2">
-                    <i className="fas fa-wrench text-amber-500"></i> Herramientas e Inteligencia Artificial
+                {/* HERRAMIENTAS - SOLO PDF */}
+                <section className="print-only print-sidebar-block">
+                  <h3 className="print-sidebar-title">
+                    <i className="fas fa-microchip"></i> Ecosistema Tech
                   </h3>
                   <div className="flex flex-wrap gap-2">
-                    {["Antigravity", "ChatGPT Plus/Enterprise", "Claude", "Gemini", "Google AI Studio", "Make.com", "Notion AI"].map(tool => (
-                      <span key={tool} className="px-3 py-1.5 bg-amber-500/10 border border-amber-500/20 text-amber-500 text-[11px] font-bold uppercase rounded hover:bg-amber-500 hover:text-slate-900 transition-all cursor-default">
+                    {["GEMINI / CLAUDE", "AZURE AI", "MAKE.COM", "FIREBASE", "OCR / MLLM", "SERVERLESS", "AGILE MGMT", "CX STRATEGY"].map(tool => (
+                      <span key={tool} className="px-2 py-1 bg-slate-50 border border-slate-200 text-[8px] font-black uppercase text-slate-900 rounded">
                         {tool}
                       </span>
                     ))}
@@ -433,20 +757,22 @@
             </div>
 
 
-            <div className={`${activeTab === 'innovacion' ? 'block' : 'hidden md:block'}`}>
+            <div className={`${activeTab === 'innovacion' ? 'block' : 'hidden md:block'} print:block`}>
               {/* APTITUDES CLAVE - PANELES HOLOGRÁFICOS (FULL WIDTH) */}
-              <section className="p-6 md:p-12 border-t border-slate-800/50 bg-[#0a1120] relative z-20">
-                <div className="text-center mb-10">
-                  <h3 className="text-[10px] md:text-xs font-black uppercase tracking-[0.3em] mb-3 border border-slate-800 bg-slate-900 shadow-[0_0_15px_rgba(245,158,11,0.1)] inline-flex items-center px-4 py-1.5 rounded-full">
+              {/* SECCIÓN: COMPETENCIAS (FORZAR HOJA 3) */}
+              <section className="p-6 md:p-12 border-t border-slate-800/50 bg-[#0a1120] relative z-20 print:bg-white print:border-slate-100 page-break-skills">
+                <div className="text-center mb-10 print:mb-6">
+                  <h3 className="text-[10px] md:text-xs font-black uppercase tracking-[0.3em] mb-3 border border-slate-800 bg-slate-900 shadow-[0_0_15px_rgba(245,158,11,0.1)] inline-flex items-center px-4 py-1.5 rounded-full print:bg-white print:text-amber-600 print:border-amber-500 no-print">
                     <i className="fas fa-bolt text-amber-500 mr-2"></i>
-                    <span className="text-white mr-1.5">Competencias</span> <span className="text-slate-500 mr-1.5">&</span> <span className="text-amber-500">Aptitudes</span>
+                    <span className="text-white mr-1.5 print:text-amber-600">Competencias</span> <span className="text-slate-500 mr-1.5 print:text-slate-400">&</span> <span className="text-amber-500">Aptitudes</span>
                   </h3>
-                  <h2 className="text-2xl md:text-3xl font-black text-white uppercase tracking-tighter">
+                  <div className="hidden print:block text-[10px] font-black text-amber-600 uppercase tracking-widest mb-4">⚡ COMPETENCIAS & APTITUDES</div>
+                  <h2 className="text-2xl md:text-3xl font-black text-white uppercase tracking-tighter print:text-slate-900 print:text-xl print:mb-12">
                     Áreas de Dominio Técnico y Operativo
                   </h2>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 print:gap-x-14 print:gap-y-20 relative z-10 print:mt-10">
                   {[
                     {
                       icon: "fas fa-users-cog", title: "Liderazgo Organizacional", skills: [
@@ -505,18 +831,19 @@
 
 
               {/* SECCIÓN: PORTAFOLIO MULTISECTORIAL (ANTIGRAVITY + GOOGLE AI STUDIO + FIREBASE) */}
-              <section className="p-8 md:p-12 mb-8 mt-8 border-t border-slate-800/50 bg-slate-950/20">
-                <div className="mb-12 text-center relative z-10 w-full col-span-full">
-                  <h2 className="text-[10px] md:text-xs font-black text-amber-500 uppercase tracking-[0.3em] mb-4 border border-amber-500/20 bg-amber-500/10 inline-block px-4 py-1.5 rounded-full shadow-[0_0_15px_rgba(245,158,11,0.1)]">
+              <section id="innovacion-section" className="p-8 md:p-12 mb-8 mt-8 border-t border-slate-800/50 bg-slate-950/20 print:bg-white">
+                <div className="mb-12 text-center relative z-10 w-full col-span-full print:mb-8">
+                  <h2 className="text-[10px] md:text-xs font-black text-amber-500 uppercase tracking-[0.3em] mb-4 border border-amber-500/20 bg-amber-500/10 inline-block px-4 py-1.5 rounded-full shadow-[0_0_15px_rgba(245,158,11,0.1)] print:border-amber-500 print:text-amber-600 print:tracking-normal">
                     Centro de Innovación y Desarrollo
                   </h2>
-                  <h1 className="text-3xl md:text-5xl font-black text-white uppercase tracking-tighter">
+                  <h1 className="text-3xl md:text-5xl font-black text-white uppercase tracking-tighter print:text-slate-900">
                     Portafolio de <span className="text-amber-500">Innovación Tecnológica</span>
                   </h1>
-                  <p className="text-slate-400 text-sm md:text-base max-w-4xl mx-auto mt-5 leading-relaxed font-medium">
+                  <p className="text-slate-400 text-sm md:text-base max-w-4xl mx-auto mt-5 leading-relaxed font-medium print:text-slate-600">
                     Desarrollo de una arquitectura de software diversificada en más de 20 proyectos (Aplicaciones Locales, Sistemas Serverless en la Nube y Motores de Inteligencia Artificial).
                   </p>
                 </div>
+
 
                 {/* GRID DE 9 CATEGORÍAS (3x3 en Desktop) */}
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 relative z-10 mb-8">
@@ -673,7 +1000,13 @@
                       <span className="text-[9px] font-black uppercase tracking-widest text-slate-500 px-2 py-0.5 bg-slate-800 rounded-md">Asistencia Cognitiva</span>
                     </div>
                   </div>
+                </div>
 
+                {/* ELEMENTO DE SALTO DE PÁGINA PARA PRINT (FORZAR HOJA 5) */}
+                <div className="hidden print:block page-break-portfolio-end"></div>
+
+                {/* GRID DE CATEGORÍAS FINALES (Página 5 en PDF) */}
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 relative z-10 print:mt-12">
                   {/* 10. PRODUCTIVIDAD EJECUTIVA AI */}
                   <div className="group bg-[#0f172a] p-6 rounded-2xl border border-slate-800 hover:border-amber-500/40 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_10px_30px_rgba(245,158,11,0.05)] flex flex-col">
                     <div className="flex items-start justify-between mb-4">
@@ -733,7 +1066,7 @@
 
 
               {/* CALL TO ACTION DIGITAL - IMPACTO VISUAL FINAL */}
-              <section className="p-8 md:p-16 border-t border-slate-800/50 bg-gradient-to-br from-[#0a1120] to-[#040812] relative z-20 flex flex-col md:flex-row items-center justify-between gap-10">
+              <section className="cta-section p-8 md:p-16 border-t border-slate-800/50 bg-gradient-to-br from-[#0a1120] to-[#040812] relative z-20 flex flex-col md:flex-row items-center justify-between gap-10 no-print">
                 <div className="absolute inset-0 bg-amber-500/5 opacity-50 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-amber-500/10 via-transparent to-transparent"></div>
 
                 <div className="relative z-10 flex-1 text-center md:text-left">
@@ -794,6 +1127,16 @@
                 Maximizando rentabilidad corporativa mediante Operaciones y Arquitectura de IA
               </p>
             </footer>
+
+            {/* PRINT FOOTER - SOLO PDF */}
+            <div className="hidden print:block border-t border-slate-200 mt-10 pt-6 text-center">
+              <p className="text-[10px] text-slate-500 uppercase tracking-[0.2em] font-black mb-2">
+                HJALMAR MEZA CORTEZ • Senior Management & AI Strategy
+              </p>
+              <p className="text-[8px] text-slate-400 uppercase tracking-widest">
+                Documento generado digitalmente para fines ejecutivos • 2026
+              </p>
+            </div>
           </div >
 
           {/* MOBILE NAVIGATION TABS (Sticky Bottom) - ONLY VISIBLE ON MOBILE */}
