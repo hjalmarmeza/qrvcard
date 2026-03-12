@@ -71,22 +71,74 @@
             margin-top: 2rem;
         }
 
+        /* OPTIMIZACIÓN PARA IMPRESIÓN (PDF) */
         @media print {
             body {
-                background: #030712 !important;
+                background: white !important;
+                color: #0f172a !important;
+                padding: 0 !important;
+                margin: 0 !important;
                 -webkit-print-color-adjust: exact;
                 print-color-adjust: exact;
             }
 
             .a4-document {
-                border: none;
-                box-shadow: none;
-                border-radius: 0;
-                margin: 0;
+                background: white !important;
+                color: #0f172a !important;
+                border: none !important;
+                box-shadow: none !important;
+                border-radius: 0 !important;
+                max-width: 100% !important;
+                padding: 15mm 20mm !important; /* Márgenes estándar de carta */
+                backdrop-filter: none !important;
+            }
+
+            p {
+                color: #1e293b !important;
+                font-size: 11pt !important;
+                line-height: 1.6 !important;
+                text-align: justify !important;
+            }
+
+            h1 { color: #000000 !important; }
+            h2 { color: #475569 !important; }
+            
+            strong, .text-white, .serif-font {
+                color: #000000 !important;
+                font-weight: 700 !important;
+            }
+
+            .text-amber-500 {
+                color: #854d0e !important; /* Ámbar oscuro para impresión */
+                font-weight: 700 !important;
+            }
+
+            .text-slate-400, .text-slate-500 {
+                color: #334155 !important;
+            }
+
+            .neon-highlight {
+                display: none !important;
+            }
+
+            .signature-block {
+                border-top: 1px solid #cbd5e1 !important;
+                margin-top: 10mm !important;
             }
 
             .no-print {
                 display: none !important;
+            }
+
+            header {
+                border-bottom: 2px solid #f59e0b !important;
+                margin-bottom: 12mm !important;
+            }
+
+            /* Forzar que quepa en una sola hoja A4 */
+            @page {
+                size: A4;
+                margin: 0;
             }
         }
     </style>
