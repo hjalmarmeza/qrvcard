@@ -46,14 +46,7 @@
         backdrop-filter: none !important;
       }
       
-      body, html, #root, .max-w-6xl {
-        background-color: white !important;
-        background: white !important;
-        color: #000000 !important;
-      }
-
       header *, main *, aside *, section *, div *, p, span, li, h1, h2, h3, h4 {
-        color: #000000 !important;
         background-image: none !important;
       }
 
@@ -143,15 +136,15 @@
       }
 
       div[class*="bg-slate-900/60"] {
-        border: 2px solid #cbd5e1 !important;
+        border: 1.5px solid #cbd5e1 !important;
         padding: 8px !important;
-        background: #f8fafc !important; /* Fondo muy tenue */
+        background: #f8faf9 !important;
       }
       
-      div[class*="bg-slate-900/60"] span { color: #475569 !important; font-weight: 800 !important; }
-      div[class*="bg-slate-900/60"] div { color: #000000 !important; font-weight: 900 !important; font-size: 16pt !important; }
-      div[class*="bg-slate-900/60"] .text-slate-400 { color: #64748b !important; font-weight: 700 !important; }
-      div[class*="bg-slate-900/60"] i { color: #92400e !important; }
+      div[class*="bg-slate-900/60"] span { color: #64748b !important; font-weight: 700 !important; }
+      div[class*="bg-slate-900/60"] div { color: #000000 !important; font-weight: 900 !important; font-size: 15pt !important; }
+      div[class*="bg-slate-900/60"] .text-slate-400 { color: #64748b !important; font-weight: 600 !important; }
+      div[class*="bg-slate-900/60"] i { color: #f59e0b !important; }
 
       /* Layout de Columnas */
       .flex-col.lg-flex-row {
@@ -1221,7 +1214,7 @@
             </div>
 
             {/* FOOTER */}
-            <footer className="bg-slate-950 border-t border-slate-800 p-6 flex flex-col md:flex-row justify-between items-center gap-4">
+            <footer className="bg-slate-950 border-t border-slate-800 p-6 flex flex-col md:flex-row justify-between items-center gap-4 no-print">
               <div className="flex items-center gap-3">
                 <div className="h-[1px] w-12 bg-amber-500"></div>
                 <p className="text-[10px] uppercase tracking-[0.3em] text-slate-500 font-black">
@@ -1245,7 +1238,7 @@
           </div >
 
           {/* MOBILE NAVIGATION TABS (Sticky Bottom) - ONLY VISIBLE ON MOBILE */}
-          < nav className="md:hidden fixed bottom-0 left-0 w-full bg-slate-950/90 backdrop-blur-md border-t border-slate-800 z-50 flex justify-around items-center px-1 pb-1 pt-2 shadow-[0_-10px_40px_rgba(0,0,0,0.5)]" >
+          < nav className="md:hidden fixed bottom-0 left-0 w-full bg-slate-950/90 backdrop-blur-md border-t border-slate-800 z-50 flex justify-around items-center px-1 pb-1 pt-2 shadow-[0_-10px_40px_rgba(0,0,0,0.5)] no-print" >
             <button
               onClick={() => { setActiveTab('perfil'); window.scrollTo(0, 0); }}
               className={`flex-1 flex flex-col items-center gap-1.5 py-2 transition-colors duration-300 ${activeTab === 'perfil' ? 'text-amber-500' : 'text-slate-500 hover:text-slate-300'}`}>
