@@ -55,10 +55,10 @@
       .print-only { display: block !important; }
 
       /* Forzar fondos blancos y contraste máximo */
-      .max-w-6xl, #root, body, main, aside, section, div[class*="bg-slate"] {
+      .max-w-6xl, #root, body, main, aside, section, div[class*="bg-slate"], div[class*="bg-[#0f172a]"], div[class*="bg-slate-950"] {
         background-color: white !important;
         background: white !important;
-        border-color: #94a3b8 !important; /* Gris más oscuro para bordes */
+        border-color: #cbd5e1 !important; /* Gris medio para bordes */
         color: #0f172a !important;
         box-shadow: none !important;
         margin: 0 !important;
@@ -70,8 +70,12 @@
         font-weight: 800 !important;
       }
 
-      .text-slate-400, .text-slate-300, .text-slate-200 {
-        color: #1e293b !important;
+      .text-white, .text-slate-50, .text-slate-100, .text-slate-200, .text-slate-300, .text-slate-400 {
+        color: #0f172a !important;
+      }
+
+      .text-amber-500, .text-amber-400, .text-amber-600 {
+        color: #92400e !important; /* Ámbar tostado para máximo contraste en papel */
       }
 
       /* Bloque de URLs para impresión */
