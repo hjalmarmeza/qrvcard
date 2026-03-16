@@ -41,7 +41,7 @@
       * {
         -webkit-print-color-adjust: exact !important;
         print-color-adjust: exact !important;
-        background-color: transparent !important;
+        color: #000000 !important; /* Texto negro base para todo */
       }
 
       body, html {
@@ -167,7 +167,12 @@
         page-break-after: avoid;
       }
       
-      h2 i { color: #f59e0b !important; margin-right: 8px !important; }
+      h2 i { color: #92400e !important; margin-right: 8px !important; }
+      
+      /* Asegurar contraste en etiquetas de acento */
+      .text-amber-500, .text-amber-400, .text-amber-600, .fa-amber-500 {
+        color: #92400e !important;
+      }
 
       /* Ajuste de Experiencia Laboral (Máximo Contraste) */
       .experience-item {
@@ -209,18 +214,22 @@
         break-inside: avoid !important;
       }
 
-      div[class*="bg-slate-900/50"] { background: #f8fafc !important; border-bottom: 1px solid #e2e8f0 !important; padding: 8px !important; }
-      div[class*="bg-slate-900/50"] h3 { font-size: 8pt !important; color: #000000 !important; font-weight: 900 !important; }
-      div[class*="bg-slate-900/50"] i { font-size: 14pt !important; color: #f59e0b !important; }
+      div[class*="bg-slate-900/50"] { 
+        background: #f1f5f9 !important; 
+        border-bottom: 2px solid #cbd5e1 !important; 
+        padding: 8px !important; 
+      }
+      div[class*="bg-slate-900/50"] h3 { font-size: 8.5pt !important; color: #000000 !important; font-weight: 900 !important; }
+      div[class*="bg-slate-900/50"] i { font-size: 14pt !important; color: #92400e !important; }
 
       div[class*="skills-tags"], div[class*="p-6 w-full flex flex-wrap"] { padding: 8px !important; gap: 4px !important; }
       span[class*="px-2.5 py-1"] { 
-        background: #f8fafc !important; 
-        color: #1e293b !important; 
-        font-size: 7.5pt !important; 
-        border: 1px solid #94a3b8 !important;
-        padding: 1px 5px !important;
-        font-weight: 600 !important;
+        background: #f1f5f9 !important; 
+        color: #000000 !important; 
+        font-size: 8pt !important; 
+        border: 2px solid #cbd5e1 !important;
+        padding: 2px 6px !important;
+        font-weight: 800 !important;
       }
 
       /* Portafolio (Contraste Portafolio) */
